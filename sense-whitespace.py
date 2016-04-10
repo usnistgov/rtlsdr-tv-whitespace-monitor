@@ -8,7 +8,7 @@ from gnuradio.eng_option import eng_option
 import math
 import numpy
 
-def get_available_whitespace(lat, lon):
+def get_available_whitespace(lat, lon,apiKey):
 	req = {}
 	req["jsonrpc"] = "2.0"
 	req["method"] = "spectrum.paws.getSpectrum"
@@ -21,7 +21,7 @@ def get_available_whitespace(lat, lon):
 	params["antenna"] = { "height": 30.0, "heightType": "AGL" }
 	params["owner"] = { "owner": { } }
 	params["capabilities"] = { "frequencyRanges": [{ "startHz": 800000000, "stopHz": 850000000 }, { "startHz": 900000000, "stopHz": 950000000 }] }
-	params["key"] = "AIzaSyDgnBNVM2l0MS0fWMXh3SCzBz6FJyiSodU"
+	params["key"] = apiKey
 	req["params"] = params
 	req["id"] = "any_string"
 	r  = json.dumps(req)
@@ -65,7 +65,7 @@ def find_spectrum_hole(whitespace, requiredSpectrum, threshold):
 if __name__ == '__main__':
      options = parse_options()
 
-     whitespace = get_available_whitespace(options.lat,options.lon)
+     whitespace = get_available_whitespace(options.lat,options.lon,options.api_key)
      spectrumHole = find_spectrum_hole(whitespace,options.required_bw,options.threshold)
      startHz = spectrumHole["startHz"]
      stopHz = spectrumHole["stopHz"]
