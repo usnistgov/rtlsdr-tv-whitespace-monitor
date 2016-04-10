@@ -10,9 +10,9 @@ This script uses python 2.7
 
 1. Get an API_KEY from Google for access to the google TV whitespace database. This is free for research use.
 
-2. Install numpy, pyrtlsdr using pip install
+2. Install python packages: requests, numpy and pyrtlsdr using pip install
 
 3. Run :
 
-    python sense-whitespace.py --lat 39.086768 --lon -77.179863 --api-key "API_KEY"
+      python sense-whitespace.py --lat 39.086768 --lon -77.179863 --api-key "API_KEY"
 
